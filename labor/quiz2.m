@@ -1,14 +1,24 @@
 clear all
 close all
 
-alpha = 5*(10.^(-2));
-beta = 4*(10.^(-7));
+I = [0,4200];
 
-tt = I(1):I(2);
-bb = AnkommendeBesucher(tt,alpha,beta,?);
+x = linspace(I(1),I(2));
 
-function b = AnkommendeBesucher(t,alpha,beta,gamma)
+alpha = 3*10.^(-2);
+beta = 8.9*(10.^(-7));
+gamma = 1.5*10.^3;
 
-    b = alpha*exp(-beta*(t-gamma).^2);
+bb = AnkommendeBesucher(alpha,beta,gamma,x);
+A = floor(cumsum(bb));
+aa = (sum(A))
 
-end
+hold on
+%plot(x,bb,"r-")
+%plot(x,A,"g-")
+%title("Ankommende Personen je Zeit")
+%xlabel("t")
+%ylabel("b(t)")
+grid on
+set(gca, "XAxisLocation", "origin", "YAxisLocation", "origin")
+
